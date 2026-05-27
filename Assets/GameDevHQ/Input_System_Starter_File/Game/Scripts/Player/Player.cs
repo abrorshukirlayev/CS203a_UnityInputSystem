@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 using Game.Scripts.LiveObjects;
 using Cinemachine;
 
@@ -11,6 +10,7 @@ namespace Game.Scripts.Player
     {
         private CharacterController _controller;
         private Animator _anim;
+        private GameInput _input;
         [SerializeField]
         private float _speed = 5.0f;
         private bool _playerGrounded;
@@ -37,6 +37,7 @@ namespace Game.Scripts.Player
 
         private void Start()
         {
+            InitialzeGameInput();
             _controller = GetComponent<CharacterController>();
 
             if (_controller == null)
@@ -55,13 +56,20 @@ namespace Game.Scripts.Player
 
         }
 
+        private void InitialzeGameInput()
+        {
+            _input = new GameInput();
+            _input.Player.Enable();
+        }
+        
         private void CalcutateMovement()
         {
             _playerGrounded = _controller.isGrounded;
-            float h = Input.GetAxisRaw("Horizontal");
-            float v = Input.GetAxisRaw("Vertical");
+            var move = _input.Player.Movement.ReadValue<Vector2>();
+            float h = move.x;
+            float v = move.y;
 
-            transform.Rotate(transform.up, h);
+            transform.Rotate(transform.up, h * Time.deltaTime * 90f);
 
             var direction = transform.forward * v;
             var velocity = direction * _speed;
@@ -71,7 +79,7 @@ namespace Game.Scripts.Player
 
 
             if (_playerGrounded)
-                velocity.y = 0f;
+                velocity.y = -2f;
             if (!_playerGrounded)
             {
                 velocity.y += -20f * Time.deltaTime;
