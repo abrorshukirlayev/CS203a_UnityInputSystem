@@ -19563,7 +19563,8 @@ MonoBehaviour:
   _displayMessage: Reset
   _zoneItems: []
   _inventoryIcon: {fileID: 0}
-  _zoneKeyInput: {fileID: 0}
+  _zoneKeyInput: {fileID: 7113229101027469891, guid: f64f9a034357778409f18760abc1aaed,
+    type: 3}
   _keyState: 0
   _marker: {fileID: 1578479318}
 --- !u!1 &967188505
@@ -28047,7 +28048,7 @@ PrefabInstance:
     - target: {fileID: 5779097134961922744, guid: 1d553f90302742946bbf45996165949c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.478
+      value: 9.08
       objectReference: {fileID: 0}
     - target: {fileID: 5779097134961922744, guid: 1d553f90302742946bbf45996165949c,
         type: 3}
@@ -28057,7 +28058,7 @@ PrefabInstance:
     - target: {fileID: 5779097134961922744, guid: 1d553f90302742946bbf45996165949c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.9
+      value: 9.24
       objectReference: {fileID: 0}
     - target: {fileID: 5779097134961922744, guid: 1d553f90302742946bbf45996165949c,
         type: 3}
@@ -38612,7 +38613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c14085171003ee2478ef40ebd5fcbee8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.036
+      value: 7.57
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c14085171003ee2478ef40ebd5fcbee8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -38620,7 +38621,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c14085171003ee2478ef40ebd5fcbee8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.9247
+      value: 10.03
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c14085171003ee2478ef40ebd5fcbee8, type: 3}
       propertyPath: m_LocalRotation.w

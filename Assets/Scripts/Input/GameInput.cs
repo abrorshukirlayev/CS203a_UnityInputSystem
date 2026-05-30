@@ -423,6 +423,140 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""ForkLift"",
+            ""id"": ""dfd05526-b6cb-48ca-bb93-dbd8fac31789"",
+            ""actions"": [
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""c9787186-c316-4195-b226-2e64b7cae9ff"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Lift"",
+                    ""type"": ""Value"",
+                    ""id"": ""27cb50ae-42e9-470e-a4ae-a69289343a6f"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ExitForkLift"",
+                    ""type"": ""Button"",
+                    ""id"": ""1494f8db-3195-4dea-b977-5a5e68942e4b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""40b1a094-7efd-4726-b591-e6ebfc0b7ca0"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""fe486011-0182-4da1-bf9f-512e33b77d01"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""b3fe2446-b584-465e-881a-e9f744b71005"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""3e40fab2-9644-4084-99d3-98c481063ea4"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""4a63db73-1b89-4271-ba6a-dc38e4368f06"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""20c8ba7e-d943-4146-8167-9412c30a8b61"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lift"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""b6d8ecb7-a046-47f6-8def-5ebb90675c27"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""c2b95a68-b9cd-4715-bb72-3525bdcd7311"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b7a9d066-c152-4ed9-a4f1-160d0eb7a309"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitForkLift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -442,6 +576,11 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Laptop = asset.FindActionMap("Laptop", throwIfNotFound: true);
         m_Laptop_NextCamera = m_Laptop.FindAction("NextCamera", throwIfNotFound: true);
         m_Laptop_ExitLaptop = m_Laptop.FindAction("ExitLaptop", throwIfNotFound: true);
+        // ForkLift
+        m_ForkLift = asset.FindActionMap("ForkLift", throwIfNotFound: true);
+        m_ForkLift_Movement = m_ForkLift.FindAction("Movement", throwIfNotFound: true);
+        m_ForkLift_Lift = m_ForkLift.FindAction("Lift", throwIfNotFound: true);
+        m_ForkLift_ExitForkLift = m_ForkLift.FindAction("ExitForkLift", throwIfNotFound: true);
     }
 
     ~@GameInput()
@@ -449,6 +588,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, GameInput.Player.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Drone.enabled, "This will cause a leak and performance issues, GameInput.Drone.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Laptop.enabled, "This will cause a leak and performance issues, GameInput.Laptop.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_ForkLift.enabled, "This will cause a leak and performance issues, GameInput.ForkLift.Disable() has not been called.");
     }
 
     /// <summary>
@@ -874,6 +1014,124 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="LaptopActions" /> instance referencing this action map.
     /// </summary>
     public LaptopActions @Laptop => new LaptopActions(this);
+
+    // ForkLift
+    private readonly InputActionMap m_ForkLift;
+    private List<IForkLiftActions> m_ForkLiftActionsCallbackInterfaces = new List<IForkLiftActions>();
+    private readonly InputAction m_ForkLift_Movement;
+    private readonly InputAction m_ForkLift_Lift;
+    private readonly InputAction m_ForkLift_ExitForkLift;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "ForkLift".
+    /// </summary>
+    public struct ForkLiftActions
+    {
+        private @GameInput m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public ForkLiftActions(@GameInput wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "ForkLift/Movement".
+        /// </summary>
+        public InputAction @Movement => m_Wrapper.m_ForkLift_Movement;
+        /// <summary>
+        /// Provides access to the underlying input action "ForkLift/Lift".
+        /// </summary>
+        public InputAction @Lift => m_Wrapper.m_ForkLift_Lift;
+        /// <summary>
+        /// Provides access to the underlying input action "ForkLift/ExitForkLift".
+        /// </summary>
+        public InputAction @ExitForkLift => m_Wrapper.m_ForkLift_ExitForkLift;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_ForkLift; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="ForkLiftActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(ForkLiftActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="ForkLiftActions" />
+        public void AddCallbacks(IForkLiftActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ForkLiftActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ForkLiftActionsCallbackInterfaces.Add(instance);
+            @Movement.started += instance.OnMovement;
+            @Movement.performed += instance.OnMovement;
+            @Movement.canceled += instance.OnMovement;
+            @Lift.started += instance.OnLift;
+            @Lift.performed += instance.OnLift;
+            @Lift.canceled += instance.OnLift;
+            @ExitForkLift.started += instance.OnExitForkLift;
+            @ExitForkLift.performed += instance.OnExitForkLift;
+            @ExitForkLift.canceled += instance.OnExitForkLift;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="ForkLiftActions" />
+        private void UnregisterCallbacks(IForkLiftActions instance)
+        {
+            @Movement.started -= instance.OnMovement;
+            @Movement.performed -= instance.OnMovement;
+            @Movement.canceled -= instance.OnMovement;
+            @Lift.started -= instance.OnLift;
+            @Lift.performed -= instance.OnLift;
+            @Lift.canceled -= instance.OnLift;
+            @ExitForkLift.started -= instance.OnExitForkLift;
+            @ExitForkLift.performed -= instance.OnExitForkLift;
+            @ExitForkLift.canceled -= instance.OnExitForkLift;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ForkLiftActions.UnregisterCallbacks(IForkLiftActions)" />.
+        /// </summary>
+        /// <seealso cref="ForkLiftActions.UnregisterCallbacks(IForkLiftActions)" />
+        public void RemoveCallbacks(IForkLiftActions instance)
+        {
+            if (m_Wrapper.m_ForkLiftActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="ForkLiftActions.AddCallbacks(IForkLiftActions)" />
+        /// <seealso cref="ForkLiftActions.RemoveCallbacks(IForkLiftActions)" />
+        /// <seealso cref="ForkLiftActions.UnregisterCallbacks(IForkLiftActions)" />
+        public void SetCallbacks(IForkLiftActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ForkLiftActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ForkLiftActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="ForkLiftActions" /> instance referencing this action map.
+    /// </summary>
+    public ForkLiftActions @ForkLift => new ForkLiftActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
     /// </summary>
@@ -960,5 +1218,34 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnExitLaptop(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "ForkLift" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="ForkLiftActions.AddCallbacks(IForkLiftActions)" />
+    /// <seealso cref="ForkLiftActions.RemoveCallbacks(IForkLiftActions)" />
+    public interface IForkLiftActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Movement" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMovement(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Lift" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLift(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ExitForkLift" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnExitForkLift(InputAction.CallbackContext context);
     }
 }

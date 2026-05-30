@@ -33,11 +33,16 @@ namespace Game.Scripts.Player
             Forklift.onDriveModeEntered += HidePlayer;
             Drone.OnEnterFlightMode += ReleasePlayerControl;
             Drone.onExitFlightmode += ReturnPlayerControl;
-        } 
+            _input.Player.Enable();
+        }
+
+        private void Awake()
+        {
+            InitialzeGameInput();
+        }
 
         private void Start()
         {
-            InitialzeGameInput();
             _controller = GetComponent<CharacterController>();
 
             if (_controller == null)
@@ -135,6 +140,7 @@ namespace Game.Scripts.Player
             Forklift.onDriveModeEntered -= HidePlayer;
             Drone.OnEnterFlightMode -= ReleasePlayerControl;
             Drone.onExitFlightmode -= ReturnPlayerControl;
+            _input.Player.Disable();
         }
 
     }
