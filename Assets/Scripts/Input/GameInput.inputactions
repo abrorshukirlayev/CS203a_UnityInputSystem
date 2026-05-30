@@ -14,6 +14,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "38163231-d216-4dd2-bbd4-c6030f491318",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Detonate",
+                    "type": "Button",
+                    "id": "5739203d-8abe-434f-8b34-6526d29f994c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -71,6 +89,28 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "2629b8bd-832a-4af3-b6ee-673ecdc54041",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c97442d1-4b9e-47c2-ac61-e395a45a5544",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Detonate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -88,7 +128,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Escape",
+                    "name": "ExitDrone",
                     "type": "Button",
                     "id": "384207b8-7578-4490-a93b-22aefdd4f447",
                     "expectedControlType": "",
@@ -178,7 +218,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Escape",
+                    "action": "ExitDrone",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -247,6 +287,54 @@
                     "action": "Thrust",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Laptop",
+            "id": "7129b806-4957-41a5-aae5-0d1fee79b742",
+            "actions": [
+                {
+                    "name": "NextCamera",
+                    "type": "Button",
+                    "id": "de5fff5a-0b78-4365-ab0b-51d754301c5d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ExitLaptop",
+                    "type": "Button",
+                    "id": "fcf16586-89af-4113-a951-dd4b696f7cec",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e9b1580b-f539-45e5-bcdc-375c899f6067",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1508a2fd-bc4b-45f5-ad30-b3b7d0a3de1f",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExitLaptop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

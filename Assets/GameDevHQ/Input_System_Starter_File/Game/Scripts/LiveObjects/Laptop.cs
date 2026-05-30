@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 namespace Game.Scripts.LiveObjects
 {
@@ -14,11 +15,13 @@ namespace Game.Scripts.LiveObjects
         [SerializeField]
         private int _hackTime = 5;
         private bool _hacked = false;
+        private bool _entered = false;
         [SerializeField]
         private CinemachineVirtualCamera[] _cameras;
         private int _activeCamera = 0;
         [SerializeField]
         private InteractableZone _interactableZone;
+        private GameInput _input;
 
         public static event Action onHackComplete;
         public static event Action onHackEnded;
@@ -29,30 +32,47 @@ namespace Game.Scripts.LiveObjects
             InteractableZone.onHoldEnded += InteractableZone_onHoldEnded;
         }
 
-        private void Update()
+        private void Start()
         {
-            if (_hacked == true)
+            InitialzeGameInput();
+        }
+
+        private void InitialzeGameInput()
+        {
+            _input = new GameInput();
+            _input.Laptop.Enable();
+            _input.Laptop.NextCamera.performed += NextCamera_Performed;
+            _input.Laptop.ExitLaptop.performed += ExitLaptop_Performed;
+        }
+
+        private void NextCamera_Performed(InputAction.CallbackContext context)
+        {
+            if (!_entered) return;
+
+            if (_input.Laptop.NextCamera.IsPressed())
             {
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    var previous = _activeCamera;
-                    _activeCamera++;
+                var previous = _activeCamera;
+                _activeCamera++;
 
 
-                    if (_activeCamera >= _cameras.Length)
-                        _activeCamera = 0;
+                if (_activeCamera >= _cameras.Length)
+                    _activeCamera = 0;
 
 
-                    _cameras[_activeCamera].Priority = 11;
-                    _cameras[previous].Priority = 9;
-                }
+                _cameras[_activeCamera].Priority = 11;
+                _cameras[previous].Priority = 9;
+            }
+        }
 
-                if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    _hacked = false;
-                    onHackEnded?.Invoke();
-                    ResetCameras();
-                }
+        private void ExitLaptop_Performed(InputAction.CallbackContext context)
+        {
+            if (!_entered) return;
+
+            if (_input.Laptop.ExitLaptop.IsPressed())
+            {
+                _entered = false;
+                onHackEnded?.Invoke();
+                ResetCameras();
             }
         }
 
@@ -66,7 +86,7 @@ namespace Game.Scripts.LiveObjects
 
         private void InteractableZone_onHoldStarted(int zoneID)
         {
-            if (zoneID == 3 && _hacked == false) //Hacking terminal
+            if (zoneID == 3 && _entered == false) //Hacking terminal
             {
                 _progressBar.gameObject.SetActive(true);
                 StartCoroutine(HackingRoutine());
@@ -88,7 +108,7 @@ namespace Game.Scripts.LiveObjects
             }
         }
 
-        
+
         IEnumerator HackingRoutine()
         {
             while (_progressBar.value < 1)
@@ -97,9 +117,15 @@ namespace Game.Scripts.LiveObjects
                 yield return new WaitForEndOfFrame();
             }
 
+            //enter laptop mode
+            _entered = true;
+
             //successfully hacked
-            _hacked = true;
-            _interactableZone.CompleteTask(3);
+            if (_hacked == false)
+            {
+                _hacked = true;
+                _interactableZone.CompleteTask(3);
+            }
 
             //hide progress bar
             _progressBar.gameObject.SetActive(false);

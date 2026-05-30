@@ -43,10 +43,10 @@ namespace Game.Scripts.LiveObjects
         private void InitializeGameInput()
         {
             _input = new GameInput();
-            _input.Drone.Escape.performed += Escape_Performed;
+            _input.Drone.ExitDrone.performed += ExitDrone_Performed;
         }
 
-        private void Escape_Performed(InputAction.CallbackContext context)
+        private void ExitDrone_Performed(InputAction.CallbackContext context)
         {
             _inFlightMode = false;
             onExitFlightmode?.Invoke();
